@@ -24,11 +24,11 @@
                     <ColumnListItem type="Navigation" press="onListItemPress">
                         <cells>
                             <Text text="{inspectionModel>InspectionLot}"/>
-                            <Text text="{inspectionModel>Material}"/>
+                            <Text text="{inspectionModel>Material}{inspectionModel>material}"/>
                             <Text text="{inspectionModel>Plant}"/>
                             <Text text="{inspectionModel>LotQuantity}"/>
-                            <ObjectStatus text="{inspectionModel>UsageDecision}" state="{path: 'inspectionModel>UsageDecision', formatter: '.formatter.statusState'}"/>
-                            <Button text="Record" press="onRecordPress" visible="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                            <ObjectStatus text="{inspectionModel>UsageDecision}{inspectionModel>usage_decision}" state="{parts: [{path: 'inspectionModel>UsageDecision'}, {path: 'inspectionModel>usage_decision'}], formatter: '.formatter.resolveStatusState'}"/>
+                            <Button text="Record" press="onRecordPress" visible="{= ${inspectionModel>UsageDecision} === 'PENDING' || ${inspectionModel>usage_decision} === 'PENDING' }"/>
                         </cells>
                     </ColumnListItem>
                 </items>
