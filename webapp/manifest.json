@@ -16,21 +16,17 @@
       "toolsId": "0dc759ad-aabd-411b-8e49-6e91114a0564"
     },
     "dataSources": {
-      "ZKBV_LOGIN_QP_CDS_VAN": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZKBV_LOGIN_QP_CDS_VAN',Version='0001')/$value/",
-        "type": "ODataAnnotation",
-        "settings": {
-          "localUri": "localService/mainService/ZKBV_LOGIN_QP_CDS_VAN.xml"
-        }
-      },
-      "mainService": {
+      "loginService": {
         "uri": "/sap/opu/odata/sap/ZKBV_LOGIN_QP_CDS/",
         "type": "OData",
         "settings": {
-          "annotations": [
-            "ZKBV_LOGIN_QP_CDS_VAN"
-          ],
-          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "inspectionService": {
+        "uri": "/sap/opu/odata/sap/ZBV_INSPECTION_QP_CDS/",
+        "type": "OData",
+        "settings": {
           "odataVersion": "2.0"
         }
       }
@@ -58,7 +54,8 @@
       "minUI5Version": "1.120.14",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {
@@ -72,10 +69,19 @@
           "bundleName": "qualityportal.i18n.i18n"
         }
       },
-      "": {
-        "dataSource": "mainService",
+      "loginModel": {
+        "dataSource": "loginService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
+      },
+      "inspectionModel": {
+        "dataSource": "inspectionService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
       }
     },
     "resources": {
@@ -88,28 +94,71 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "qualityportal.view",
         "controlAggregation": "pages",
         "controlId": "app",
-        "transition": "slide",
-        "type": "View",
-        "viewType": "XML",
-        "path": "qualityportal.view",
-        "async": true,
-        "viewPath": "qualityportal.view"
+        "clearControlAggregation": false
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
+          "name": "RouteLogin",
+          "pattern": "",
           "target": [
-            "TargetView1"
+            "TargetLogin"
+          ]
+        },
+        {
+          "name": "RouteDashboard",
+          "pattern": "dashboard",
+          "target": [
+            "TargetDashboard"
+          ]
+        },
+        {
+          "name": "RouteInspectionList",
+          "pattern": "inspections",
+          "target": [
+            "TargetInspectionList"
+          ]
+        },
+        {
+          "name": "RouteResultRecording",
+          "pattern": "record/{InspectionLot}",
+          "target": [
+            "TargetResultRecording"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "TargetLogin": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Login",
+          "viewName": "Login"
+        },
+        "TargetDashboard": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Dashboard",
+          "viewName": "Dashboard"
+        },
+        "TargetInspectionList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "InspectionList",
+          "viewName": "InspectionList"
+        },
+        "TargetResultRecording": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ResultRecording",
+          "viewName": "ResultRecording"
         }
       }
     },

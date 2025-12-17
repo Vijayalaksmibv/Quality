@@ -21,7 +21,19 @@ sap.ui.define([
 
             // enable routing
             this.getRouter().initialize();
+
+            // Central Error Handling
+            var oInspectionModel = this.getModel("inspectionModel");
+            if (oInspectionModel) {
+                oInspectionModel.attachRequestFailed(function (oEvent) {
+                    var sMessage = "An error occurred";
+                    try {
+                        var oParams = oEvent.getParameters();
+                        // Detailed error parsing can be added here
+                    } catch (e) { }
+                    // sap.m.MessageToast.show("Network Error: Please check connection.");
+                });
+            }
         }
     });
 });
- 

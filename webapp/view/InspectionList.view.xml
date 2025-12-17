@@ -1,0 +1,38 @@
+<mvc:View controllerName="qualityportal.controller.InspectionList"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="inspectionListPage" title="Inspection Lots" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <Table id="inspectionTable" items="{inspectionModel>/ZBV_INSPECTION_QP}" growing="true" growingThreshold="20">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Lots" level="H2"/>
+                        <ToolbarSpacer/>
+                        <SearchField search="onSearch" width="300px"/>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column><Text text="Inspection Lot"/></Column>
+                    <Column><Text text="Material"/></Column>
+                    <Column><Text text="Plant"/></Column>
+                    <Column><Text text="Quantity"/></Column>
+                    <Column><Text text="Usage Decision"/></Column>
+                    <Column hAlign="End"><Text text="Action"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onListItemPress">
+                        <cells>
+                            <Text text="{inspectionModel>InspectionLot}"/>
+                            <Text text="{inspectionModel>Material}"/>
+                            <Text text="{inspectionModel>Plant}"/>
+                            <Text text="{inspectionModel>LotQuantity}"/>
+                            <ObjectStatus text="{inspectionModel>UsageDecision}" state="{path: 'inspectionModel>UsageDecision', formatter: '.formatter.statusState'}"/>
+                            <Button text="Record" press="onRecordPress" visible="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

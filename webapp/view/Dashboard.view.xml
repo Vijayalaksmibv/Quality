@@ -1,0 +1,27 @@
+<mvc:View controllerName="qualityportal.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    <Page id="dashboardPage" title="{i18n>appTitle}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Inspection Lots" subheader="Total Lots" press="onPressInspectionLots">
+                <TileContent>
+                    <NumericContent value="{dashboard>/inspectionCount}" icon="sap-icon://inspection" />
+                </TileContent>
+            </GenericTile>
+            
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Result Records" subheader="Pending Results" press="onPressResultRecords">
+                <TileContent>
+                    <NumericContent value="{dashboard>/resultCount}" icon="sap-icon://clipboard" indicator="Critical"/>
+                </TileContent>
+            </GenericTile>
+
+            <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Usage Decision" subheader="Pending Decision" press="onPressUsageDecision">
+                <TileContent>
+                    <NumericContent value="{dashboard>/usageCount}" icon="sap-icon://accept" indicator="Good"/>
+                </TileContent>
+            </GenericTile>
+        </content>
+    </Page>
+</mvc:View>
