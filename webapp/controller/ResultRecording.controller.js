@@ -82,7 +82,7 @@ sap.ui.define([
                 var sPath = oContext.getPath();
 
                 var oData = {
-                    UsageDecision: sDecision
+                    UsageDecisionCode: sDecision
                 };
 
                 sap.ui.core.BusyIndicator.show();

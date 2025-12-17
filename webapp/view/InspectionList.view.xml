@@ -20,18 +20,16 @@
                     <Column><Text text="Usage Decision"/></Column>
                     <Column hAlign="End"><Text text="Action"/></Column>
                 </columns>
-                <items>
                     <ColumnListItem type="Navigation" press="onListItemPress">
                         <cells>
                             <Text text="{inspectionModel>InspectionLot}"/>
-                            <Text text="{inspectionModel>Material}{inspectionModel>material}"/>
+                            <Text text="{inspectionModel>MaterialNumber}"/>
                             <Text text="{inspectionModel>Plant}"/>
                             <Text text="{inspectionModel>LotQuantity}"/>
-                            <ObjectStatus text="{inspectionModel>UsageDecision}{inspectionModel>usage_decision}" state="{parts: [{path: 'inspectionModel>UsageDecision'}, {path: 'inspectionModel>usage_decision'}], formatter: '.formatter.resolveStatusState'}"/>
-                            <Button text="Record" press="onRecordPress" visible="{= ${inspectionModel>UsageDecision} === 'PENDING' || ${inspectionModel>usage_decision} === 'PENDING' }"/>
+                            <ObjectStatus text="{inspectionModel>UsageDecisionCode}" state="{path: 'inspectionModel>UsageDecisionCode', formatter: '.formatter.statusState'}"/>
+                            <Button text="Record" press="onRecordPress" visible="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
                         </cells>
                     </ColumnListItem>
-                </items>
             </Table>
         </content>
     </Page>

@@ -48,7 +48,7 @@ sap.ui.define([
 
                 // Let's count PENDING for Result Records
                 oModel.read("/ZBV_INSPECTION_QP/$count", {
-                    filters: [new sap.ui.model.Filter("UsageDecision", sap.ui.model.FilterOperator.EQ, "PENDING")],
+                    filters: [new sap.ui.model.Filter("UsageDecisionCode", sap.ui.model.FilterOperator.EQ, "PENDING")],
                     success: function (sCount) {
                         oViewModel.setProperty("/resultCount", sCount);
                     }
@@ -58,7 +58,7 @@ sap.ui.define([
                 // Maybe "Pending Decision" is the same count? Or implies Result Recorded but Decision not made?
                 // Without a specific field for "ResultRecorded", we'll use the same PENDING count or leave it equal for now.
                 oModel.read("/ZBV_INSPECTION_QP/$count", {
-                    filters: [new sap.ui.model.Filter("UsageDecision", sap.ui.model.FilterOperator.EQ, "PENDING")],
+                    filters: [new sap.ui.model.Filter("UsageDecisionCode", sap.ui.model.FilterOperator.EQ, "PENDING")],
                     success: function (sCount) {
                         // Just as placeholder, using same filter.
                         oViewModel.setProperty("/usageCount", sCount);

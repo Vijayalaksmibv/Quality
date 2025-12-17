@@ -10,9 +10,9 @@
                 title="{inspectionModel>InspectionLot}"
                 number="{inspectionModel>LotQuantity}"
                 numberUnit="PC"
-                intro="{inspectionModel>Material}">
+                intro="{inspectionModel>MaterialNumber}">
                 <statuses>
-                    <ObjectStatus text="{inspectionModel>UsageDecision}" state="{path: 'inspectionModel>UsageDecision', formatter: '.formatter.statusState'}"/>
+                    <ObjectStatus text="{inspectionModel>UsageDecisionCode}" state="{path: 'inspectionModel>UsageDecisionCode', formatter: '.formatter.statusState'}"/>
                 </statuses>
                 <attributes>
                     <ObjectAttribute title="Plant" text="{inspectionModel>Plant}"/>
@@ -23,15 +23,15 @@
                 <form:content>
                     <Label text="Unrestricted Stock"/>
                     <Input value="{path: 'inspectionModel>UnrestrictedStock', type: 'sap.ui.model.type.Integer'}" 
-                           editable="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                           editable="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
                     
                     <Label text="Blocked Stock"/>
                     <Input value="{path: 'inspectionModel>BlockedStock', type: 'sap.ui.model.type.Integer'}" 
-                           editable="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                           editable="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
                     
                     <Label text="Production Stock"/>
                     <Input value="{path: 'inspectionModel>ProductionStock', type: 'sap.ui.model.type.Integer'}" 
-                           editable="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                           editable="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
                 </form:content>
             </form:SimpleForm>
         </content>
@@ -40,11 +40,11 @@
             <OverflowToolbar>
                 <ToolbarSpacer/>
                 <Button text="Save" type="Default" press="onSave" 
-                        visible="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                        visible="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
                 <Button text="Approve" type="Accept" press="onApprove" 
-                        visible="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                        visible="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
                 <Button text="Reject" type="Reject" press="onReject" 
-                        visible="{= ${inspectionModel>UsageDecision} === 'PENDING' }"/>
+                        visible="{= ${inspectionModel>UsageDecisionCode} === 'PENDING' }"/>
             </OverflowToolbar>
         </footer>
     </Page>
